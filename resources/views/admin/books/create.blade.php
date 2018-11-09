@@ -5,9 +5,6 @@
 <div class="container">
 
 
-
-  <hr />
-
   <form class="form-horizontal" action="{{route('admin.book.store')}}" method="post">
     @csrf
 
@@ -17,4 +14,5 @@
   </form>
 </div>
 
+<hr>
 @endsection

@@ -4,11 +4,7 @@
 
 <div class="container">
 
-
-
-  <hr />
-
-  <form class="form-horizontal" action="{{ route('admin.book.update', $book) }}" method="post">
+  <form class="form-horizontal" action="{{ route('admin.book.update', ['book' => $book,'previous'=>url()->previous()]) }}" method="post">
     @method('PUT')
     @csrf
 
@@ -17,5 +13,5 @@
 
   </form>
 </div>
-
+<hr/>
 @endsection

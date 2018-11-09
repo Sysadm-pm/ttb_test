@@ -89,7 +89,13 @@
                 </div>
             </div>
         </nav>
-
+        <br/>
+        @if(Session::has('flash_message'))
+           <div class="container">
+               <div class="alert alert-success"><em> {!! session('flash_message') !!}</em>
+               </div>
+           </div>
+       @endif
         <main class="py-4">
             @yield('content')
         </main>

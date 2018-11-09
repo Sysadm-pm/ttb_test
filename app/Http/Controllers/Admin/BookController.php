@@ -18,7 +18,7 @@ class BookController extends Controller
     public function index()
     {
       return view('admin.books.index', [
-        'books'=>Book::orderBy('created_at', 'desc')->paginate(10),
+        'books'=>Book::orderBy('created_at', 'desc')->paginate(3),
 
 
       ]);
@@ -94,13 +94,18 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-      $book->update($request->except('authors'));
+      $book->update($request->except('authors','previous'));
       $book->authors()->detach();
       if($request->has('authors')) :
          $book->authors()->attach($request->input('authors'));
       endif;
 
-      return redirect()->route('admin.book.index');
+      // return redirect()->route('admin.book.index')
+      //       ->with('flash_message',
+      //       'Описание книги обновлено.');
+      return redirect($request->previous)->with('flash_message',
+             'Описание книги обновлено.');
+
     }
 
     /**
